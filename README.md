@@ -56,12 +56,11 @@ The model requires the following inputs:
     ![\\gamma](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cgamma "\gamma") -
     the foraging range of the organism. This is used to specify the
     dimensions of internal moving window functions  
-7.  A description of organism foraging behavior as either  
-
--   “simple” - where the organism visits patches based on distance
-    only  
--   “complex” - where the organism visits patches based on their
-    distance and quality relative to all other patches.
+7.  A description of organism foraging behavior as either
+    -   “simple” - where the organism visits patches based on distance
+        only  
+    -   “complex” - where the organism visits patches based on their
+        distance and quality relative to all other patches.
 
 To demonstrate the use of the model we first simulate classified
 landscapes using the `landscapeR` and `raster`packages
