@@ -37,6 +37,8 @@ SEMLE <- function(LU_Map,
   if(!(behavior %in% c("simple", "complex"))){
     return("behavior must be either 'simple' or 'complex'")
   }
+  
+  #### MW OBJECT ####
   ### Make moving window object based on foraging range
   {maxforage.dist = 2*gamma_param
     c.size = res(LU_Map)[1]
@@ -84,7 +86,7 @@ SEMLE <- function(LU_Map,
     
     #convert raster > 0 into all ones (will use to clip output raster and calc moving window normalization values)
     mask_land <- raster::crop(reclassify(floral, 
-                                         cbind(0, 
+                                         cbind(0, # One might need to change the range of these values depending on the background values of their raster
                                                max(raster::values(floral), na.rm=T), 
                                                1),
                                          include.lowest =T), 
@@ -96,8 +98,7 @@ SEMLE <- function(LU_Map,
     window_sum <- raster::raster(mask_dw, 
                          template=mask_land)
     
-    #divide the distance weighted forage raster by the moving window sum & 
-    #clip distance weighted raster to boundary of land use raster
+    #divide the distance weighted forage raster by the moving window sum & clip distance weighted raster to boundary of forage raster
     forage <- (forage/window_sum)* mask_land
     
     
@@ -137,8 +138,7 @@ SEMLE <- function(LU_Map,
                             W=FFT_matrix )
   window_sum <- raster::raster(mask_dw, template=mask_land)
   
-  #divide the distance weighted insecticide raster by the moving window sum & 
-  #clip distance weighted raster to boundary of land use raster
+  #divide the distance weighted insecticide raster by the moving window sum & clip distance weighted raster to boundary of land use raster
   pestiLoad <- (pestiLoad/window_sum)* mask_land
   
   ### STEP 3: CALCULATE EXPOSURE ###
