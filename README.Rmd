@@ -10,23 +10,15 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Table of contents
 1. [Overview](#Overview)
-2. [Citing information](#Citing information)
-3. [Installation](#Installation)
-4. [Vignette](#Vingette)
-5. [Performance](#Performance)
+2. [Installation](#Installation)
+3. [Vignette](#Vingette)
+4. [Performance](#Performance)
+5. [Citing information](#Citing information)
 
 ## **Overview** <a name="Overview"></a>
 
 This repository includes the R code of the model used for predicting the exposure of bees to pesticides at landscape scales. The associated paper has been been published as an article in *Science of the Total Environment*, and is available through the publisher [here](XXX). In this repo you can find code that was used to produce the findings in the manuscript, as well as a vignette using the model in a simulated landscape.  
 
-
-
-## **Citing information** <a name="Citing information"></a>
-
-Lonsdorf, E. V., Nicholson, C. C., Rundlöf, M., & Williams, N. M. (2023). A spatially explicit model of landscape pesticide exposure to bees: development, exploration, and evaluation. *Science of the Total Environment* doi: TBD .
-
-The model code has been released on Zenodo and has a DOI:  
-[![DOI](https://zenodo.org/badge/184192167.svg)](https://zenodo.org/badge/latestdoi/184192167)  
 
 ## **Installation** <a name="Installation"></a>
 
@@ -98,7 +90,7 @@ plot(load.ras, col = heat.colors(2, rev = T))
 
 ```
 
-Internally, the model reclassifies the land use raster into a map of resources based on a user provided lookup table. It then uses this map to create a raster of distance weighted resources. Having this process internal to the model is self-contained but inefficient (discussed below). For the model to generate these resource maps, we create a data frame with a column of the 4 land use values (0, 1, 2, 3, 4) and a column of corresponding resource values (0.0, 0.9, 0.4, 0.2). Note, one could have multiple resource value columns (e.g., corresponding to different seasons) that one could iterate through.  
+Internally, the model reclassifies the land use raster into a map of resources based on a user provided lookup table. It then uses this map to create a raster of distance weighted resources. Having this process internal to the model is self-contained but inefficient (discussed below). For the model to generate these resource maps, we create a data frame with a column of the four land use values (`0, 1, 2, 3`) and a column of corresponding resource values (`0.0, 0.9, 0.4, 0.2`). Note, one could have multiple resource value columns (e.g., corresponding to different seasons `LU_Rval_spring` vs `LU_Rval_summer`) that one could iterate through.  
 
 ```{r message=FALSE, warning=FALSE}
 
@@ -157,4 +149,14 @@ ggplot()+
   
 ## **Performance** <a name="Performance"></a>  
   
-The model is slow (this sample landscape ran in c. 3.5 seconds on my cpu), and run time will increase with map scale and foraging range. The model is also slow because it contains a few processes that could be run externally if one is iterating with the model (for example different seasons in the same place). The moving window object could be specified outside of and removed from the function. Similarly, in some instances it might make sense to create the resource maps and distance weighted forage maps outside of the function. These adjustments would speed things up. Finally, the model deploys moving window functions with a Fast Fourier Transform (thanks to [Melanie Kamerrer](https://github.com/melaniekamm) for the FFT code), which speeds things up quite a bit, but there may be even more efficient methods.
+The model is slow (this sample landscape ran in c. 3.5 seconds on my cpu), and run time will increase with map scale and foraging range. The model is also slow because it contains a few processes that could be run externally if one is iterating with the model (for example different seasons in the same place). The moving window object could be specified outside of and removed from the function. Similarly, in some instances it might make sense to create the resource maps and distance weighted forage maps outside of the function. These adjustments would speed things up. Finally, the model deploys moving window functions with a Fast Fourier Transform (thanks to [Melanie Kammerer](https://github.com/melaniekamm) for the FFT code), which speeds things up quite a bit, but there may be even more efficient methods.  
+  
+  
+## **Citing information** <a name="Citing information"></a>
+
+Lonsdorf, E. V., Nicholson, C. C., Rundlöf, M., & Williams, N. M. (2023). A spatially explicit model of landscape pesticide exposure to bees: development, exploration, and evaluation. *Science of the Total Environment* doi: TBD .
+
+The model code has been released on Zenodo and has a DOI:  
+[![DOI](https://zenodo.org/badge/710364270.svg)](https://zenodo.org/doi/10.5281/zenodo.10066591)
+
+  
