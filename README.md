@@ -14,9 +14,10 @@
 This repository includes the R code of the model used for predicting the
 exposure of bees to pesticides at landscape scales. The associated paper
 has been been published as an article in *Science of the Total
-Environment*, and is available through the publisher [here](XXX). In
-this repo you can find code that was used to produce the findings in the
-manuscript, as well as a vignette using the model in a simulated
+Environment*, and is available through the publisher
+[here](https://www.sciencedirect.com/science/article/pii/S0048969723067736).
+In this repo you can find code that was used to produce the findings in
+the manuscript, as well as a vignette using the model in a simulated
 landscape.
 
 ## **Installation** <a name="Installation"></a>
@@ -171,7 +172,7 @@ methods.
 Lonsdorf, E. V., Nicholson, C. C., Rundlöf, M., & Williams, N. M.
 (2023). A spatially explicit model of landscape pesticide exposure to
 bees: development, exploration, and evaluation. *Science of the Total
-Environment* doi: TBD .
+Environment* doi: 10.1016/j.scitotenv.2023.168146.
 
 The model code has been released on Zenodo and has a DOI:  
 [![DOI](https://zenodo.org/badge/710364270.svg)](https://zenodo.org/doi/10.5281/zenodo.10066591)
